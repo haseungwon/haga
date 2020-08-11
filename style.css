@@ -1,0 +1,180 @@
+body {
+    font-family: sans-serif;
+    background-color: #ffffff;
+}
+
+.file-upload {
+    background-color: #ffffff;
+    width: 50vw;
+    margin: 5% auto;
+    padding: 3% 5%;
+    border-radius: 18px;
+    border: dashed 1.5px #f6f7fa;
+    background-color: #f6f7fa;
+
+    
+}
+
+.file-upload-btn {
+    width: 100%;
+    margin: 0;
+    color: #fff;
+    background: #1fb264;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    border-bottom: 4px solid #15824b;
+    transition: all 0.2s ease;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.file-upload-btn:hover {
+    background: #1aa059;
+    color: #ffffff;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.file-upload-btn:active {
+    border: 0;
+    transition: all 0.2s ease;
+}
+
+.file-upload-content {
+    display: none;
+    text-align: center;
+}
+
+.file-upload-input {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+ 
+    height: 100%;
+    outline: none;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.image-upload-wrap {
+    margin-top: 20px;
+    border: 1.5px dashed #35477f;
+    position: relative;
+}
+
+.image-dropping,
+.image-upload-wrap:hover {
+    background-color: #35477f;
+    border: 1.5px dashed #35477f;
+}
+
+.image-title-wrap {
+    padding: 0 15px 15px 15px;
+    color: #222;
+}
+
+.drag-text {
+    text-align: center;
+}
+
+.drag-text h3 {
+    font-weight: 100;
+    text-transform: uppercase;
+    color: #15824b;
+    padding: 60px 0;
+}
+
+.file-upload-image {
+    max-height: 200px;
+    max-width: 200px;
+    margin: auto;
+    padding: 20px;
+}
+
+.remove-image {
+    width: 20vw;
+    margin: 0;
+    color: #fff;
+    background: #cd4535;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    border-bottom: 4px solid #b02818;
+    transition: all 0.2s ease;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.remove-image:hover {
+    background: #c13b2a;
+    color: #ffffff;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.remove-image:active {
+    border: 0;
+    transition: all 0.2s ease;
+}
+
+.nav-distance {
+    padding-left: 7.7%;
+    padding-top: 2.1%;
+}
+
+.navbar-light .navbar-brand {
+    font-family: NanumSquareR;
+    line-height: 1.68;
+    text-align: left;
+    color: #35465d;
+}
+.section {
+    margin-top: 100px;
+}
+.title {
+    font-family: NanumSquareR;
+    text-align: center;
+    color: #35477f;
+}
+.subtitle {
+    font-family: NanumSquareR;
+    text-align: center;
+    color: #35477f;
+}
+
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 600px) {
+    html {
+        font-size: 10px;
+    }
+    .navbar-brand {
+        font-size: 2rem;
+    }
+}
+
+.github-link {
+    font-family: NanumSquareR;
+    text-align: center;
+    color: #f73737;
+    line-height: 1.71;
+    font-size: 1.3rem;
+    text-decoration: underline;
+}
+.github-link:hover {
+    font-family: NanumSquareR;
+    text-align: center;
+    color: #f73737;
+    line-height: 1.71;
+    font-size: 1.3rem;
+}
+.github-icon {
+    padding-left: 2px;
+}
+
+.upload-text {
+    font-family: NanumSquareR;
+    font-size: 1.3rem;
+}
