@@ -16,10 +16,12 @@
         <title>Hello, world!</title>
 
         <link rel="stylesheet" href="style.css" />
-        
-        <!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f32a8487e4e6d75"></script>
 
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+        <script
+            type="text/javascript"
+            src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f32a8487e4e6d75"
+        ></script>
     </head>
 
     <body>
@@ -90,7 +92,11 @@
             <section class="github">
                 <div class="container github-cover d-flex flex-row-reverse">
                     <img src="image/youtube-icon.png" alt="" class="github-icon" />
-                    <a href="https://www.youtube.com/channel/UCQNE2JmbasNYbjGAcuBiRRg" class="github-link">조코딩 유튜브 바로가기 </a>
+                    <a
+                        href="https://www.youtube.com/channel/UCQNE2JmbasNYbjGAcuBiRRg"
+                        class="github-link"
+                        >조코딩 유튜브 바로가기
+                    </a>
                 </div>
             </section>
         </section>
@@ -128,6 +134,8 @@
         </div>
 
         <div id="webcam-container"></div>
+        
+        
 
         <!-- 댓글기능 -->
         <div id="disqus_thread"></div>
@@ -150,10 +158,21 @@ this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your pag
                 (d.head || d.body).appendChild(s);
             })();
         </script>
+
         <noscript
             >Please enable JavaScript to view the
             <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript
         >
+         <!--광고 -->
+        <section><ins
+            class="kakao_ad_area"
+            style="display: none;"
+            data-ad-unit="DAN-1ji78irlke1q1"
+            data-ad-width="320"
+            data-ad-height="100"
+        ></ins></section>
+       <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+        
 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -178,102 +197,108 @@ this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your pag
         <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
 
         <script type="text/javascript">
-                        // More API functions here:
-                        // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
+            // More API functions here:
+            // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
 
-                        // the link to your model provided by Teachable Machine export panel
-                        const URL = 'https://teachablemachine.withgoogle.com/models/Z8MwN1TXA/';
+            // the link to your model provided by Teachable Machine export panel
+            const URL = 'https://teachablemachine.withgoogle.com/models/Z8MwN1TXA/';
 
-                        let model, webcam, labelContainer, maxPredictions;
+            let model, webcam, labelContainer, maxPredictions;
 
-                        // Load the image model and setup the webcam
-                        async function init() {
-                            const modelURL = URL + 'model.json';
-                            const metadataURL = URL + 'metadata.json';
+            // Load the image model and setup the webcam
+            async function init() {
+                const modelURL = URL + 'model.json';
+                const metadataURL = URL + 'metadata.json';
 
-                            // load the model and metadata
-                            // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
-                            // or files from your local hard drive
-                            // Note: the pose library adds "tmImage" object to your window (window.tmImage)
-                            model = await tmImage.load(modelURL, metadataURL);
-                            maxPredictions = model.getTotalClasses();
+                // load the model and metadata
+                // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
+                // or files from your local hard drive
+                // Note: the pose library adds "tmImage" object to your window (window.tmImage)
+                model = await tmImage.load(modelURL, metadataURL);
+                maxPredictions = model.getTotalClasses();
 
-                            labelContainer = document.getElementById('label-container');
-                            for (let i = 0; i < maxPredictions; i++) {
-                                // and class labels
-                                labelContainer.appendChild(document.createElement('div'));
-                            }
-                        }
-
-                        // run the webcam image through the image model
-                        async function predict() {
-                            // predict can take in an image, video or canvas html element
-                            var image = document.getElementById('face-image');
-                            const prediction = await model.predict(image, false);
-                         // 정렬하기
-                            prediction.sort((a,b)=>parseFloat(b.probability) - parseFloat(a.probability))
-
-                         // 결과 메시지 출력하기
-                            var resultMessage;
-                            switch (prediction[0].className){
-                case ("고양이상"):
-                   resultMessage = "눈이 둥글고 크며, 눈 앞꼬리가 뒷꼬리보다 더 뻗어 있다 " + "\n눈매가 날카롭거나, 눈 앞꼬리가 코 쪽으로 쏠려있다. 또한 얼굴형이 역삼각형으로 턱이 날카롭다"
-                    break;
-                case ("여우상"):
-                    resultMessage = "눈이 가늘게 찢어져 있는 동시에 위로 솟아 있다"+ "\n눈매가 날카롭거나, 눈 앞꼬리가 코 쪽으로 쏠려있다. 또한 얼굴형이 역삼각형으로 턱이 날카롭다"
-                    break;
-                case ("뱀상"):
-                    resultMessage = "여우,고양이상보다 광대가 더 도드라지고 눈빛이 세다"+ "\n눈매가 날카롭거나, 눈 앞꼬리가 코 쪽으로 쏠려있다. 또한 얼굴형이 역삼각형으로 턱이 날카롭다"
-                    break;
-                case ("강아지상"):
-                   resultMessage = "얼굴형과 눈꼬리가 둥근인상이며, 코 끝이 강아지처럼 둥그스름하거나 깔끔하게 마무리 되어 있는 것이 포인트"
-                    break;
-                case ("개상"):
-                    resultMessage = "(얼굴이 강아지상보다 더 각져 있거나, 눈이 깊다"
-                    break;
-                case ("늑대상"):
-                    resultMessage = "개보다 얼굴이 각지고 강아지,개상보다 눈매가 올라가서 눈빛이 날카롭다"
-                    break;
-                case ("공룡상"):
-                   resultMessage = "양 눈사이의 미간이 넓거나, 광대가 발달하여 얼굴형이 마름모꼴이다"
-                    break;
-                case ("원숭이상"):
-                    resultMessage = "입이 크거나 귀가 양 옆으로 펼쳐져 있다"
-                    break;
-                case ("쥐상"):
-                    resultMessage = "쥐상"
-                    break;
-                case ("말상"):
-                    resultMessage = "긴 얼굴이 포인트며 가끔 코도 긴 사람이 있다"
-                    break;
-                case ("물고기상"):
-                    resultMessage = "눈이 동그랗게 크며, 눈 양 옆 얼굴에 여백이 별로 없다"
-                    break;
-                case ("개구리상"):
-                    resultMessage = "앞광대가 있거나 웃는 입이 크며 애교살이 두꺼워서 눈 크기와 비례한다"
-                    break;
-                case ("코알라상"):
-                    resultMessage = "코알라상"
-                    break;
-                case ("나무늘보원숭이상"):
-                    resultMessage = "나무늘보원숭이상"
-                    break;
-                default :
-                    resultMessage = "잘 모르겠네요 추후에 업데이트를 통해 찾으시기를..."
+                labelContainer = document.getElementById('label-container');
+                for (let i = 0; i < maxPredictions; i++) {
+                    // and class labels
+                    labelContainer.appendChild(document.createElement('div'));
+                }
             }
-                            $('.result-message').html(resultMessage);
-                            $('.result-message-name').html("당신은"+ prediction[0].className);
 
+            // run the webcam image through the image model
+            async function predict() {
+                // predict can take in an image, video or canvas html element
+                var image = document.getElementById('face-image');
+                const prediction = await model.predict(image, false);
+                // 정렬하기
+                prediction.sort((a, b) => parseFloat(b.probability) - parseFloat(a.probability));
 
-                            for (let i = 0; i < maxPredictions; i++) {
-                                const classPrediction =
-                                    prediction[i].className + ': ' + prediction[i].probability.toFixed(2);
-                                labelContainer.childNodes[i].innerHTML = classPrediction;
-                            }
+                // 결과 메시지 출력하기
+                var resultMessage;
+                switch (prediction[0].className) {
+                    case '고양이상':
+                        resultMessage =
+                            '눈이 둥글고 크며, 눈 앞꼬리가 뒷꼬리보다 더 뻗어 있다 ' +
+                            '\n눈매가 날카롭거나, 눈 앞꼬리가 코 쪽으로 쏠려있다. 또한 얼굴형이 역삼각형으로 턱이 날카롭다';
+                        break;
+                    case '여우상':
+                        resultMessage =
+                            '눈이 가늘게 찢어져 있는 동시에 위로 솟아 있다' +
+                            '\n눈매가 날카롭거나, 눈 앞꼬리가 코 쪽으로 쏠려있다. 또한 얼굴형이 역삼각형으로 턱이 날카롭다';
+                        break;
+                    case '뱀상':
+                        resultMessage =
+                            '여우,고양이상보다 광대가 더 도드라지고 눈빛이 세다' +
+                            '\n눈매가 날카롭거나, 눈 앞꼬리가 코 쪽으로 쏠려있다. 또한 얼굴형이 역삼각형으로 턱이 날카롭다';
+                        break;
+                    case '강아지상':
+                        resultMessage =
+                            '얼굴형과 눈꼬리가 둥근인상이며, 코 끝이 강아지처럼 둥그스름하거나 깔끔하게 마무리 되어 있는 것이 포인트';
+                        break;
+                    case '개상':
+                        resultMessage = '(얼굴이 강아지상보다 더 각져 있거나, 눈이 깊다';
+                        break;
+                    case '늑대상':
+                        resultMessage =
+                            '개보다 얼굴이 각지고 강아지,개상보다 눈매가 올라가서 눈빛이 날카롭다';
+                        break;
+                    case '공룡상':
+                        resultMessage =
+                            '양 눈사이의 미간이 넓거나, 광대가 발달하여 얼굴형이 마름모꼴이다';
+                        break;
+                    case '원숭이상':
+                        resultMessage = '입이 크거나 귀가 양 옆으로 펼쳐져 있다';
+                        break;
+                    case '쥐상':
+                        resultMessage = '쥐상';
+                        break;
+                    case '말상':
+                        resultMessage = '긴 얼굴이 포인트며 가끔 코도 긴 사람이 있다';
+                        break;
+                    case '물고기상':
+                        resultMessage = '눈이 동그랗게 크며, 눈 양 옆 얼굴에 여백이 별로 없다';
+                        break;
+                    case '개구리상':
+                        resultMessage =
+                            '앞광대가 있거나 웃는 입이 크며 애교살이 두꺼워서 눈 크기와 비례한다';
+                        break;
+                    case '코알라상':
+                        resultMessage = '코알라상';
+                        break;
+                    case '나무늘보원숭이상':
+                        resultMessage = '나무늘보원숭이상';
+                        break;
+                    default:
+                        resultMessage = '잘 모르겠네요 추후에 업데이트를 통해 찾으시기를...';
+                }
+                $('.result-message').html(resultMessage);
+                $('.result-message-name').html('당신은' + prediction[0].className);
 
-
-
-                        }
+                for (let i = 0; i < maxPredictions; i++) {
+                    const classPrediction =
+                        prediction[i].className + ': ' + prediction[i].probability.toFixed(2);
+                    labelContainer.childNodes[i].innerHTML = classPrediction;
+                }
+            }
         </script>
         <!-- image upload-->
         <script>
@@ -312,12 +337,15 @@ this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your pag
                 $('.image-upload-wrap').removeClass('image-dropping');
             });
         </script>
-        
-                <ins class="kakao_ad_area" style="display:none;" 
- data-ad-unit    = "DAN-1huxofsvixaw2" 
- data-ad-width   = "320" 
- data-ad-height  = "100"></ins> 
-<script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+
+        <ins
+            class="kakao_ad_area"
+            style="display: none;"
+            data-ad-unit="DAN-1huxofsvixaw2"
+            data-ad-width="320"
+            data-ad-height="100"
+        ></ins>
+        <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
     </body>
 
     <!--    Copyright (c) 2020 by Aaron Vanston (https://codepen.io/aaronvanston/pen/yNYOXR)
